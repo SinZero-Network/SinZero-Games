@@ -1,0 +1,62 @@
+{{ define "content"}}
+<div class="res-cons">
+    {{ partial "toc" . }}
+    <article class="post">
+        <header>
+            <h1 class="post-title">{{ .Title }}</h1>
+        </header>
+        {{ partial "post-meta.html" . }}
+        {{ if .Site.Params.busuanzi }}
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">&nbsp;|
+                <span id="busuanzi_value_page_pv"></span> <span>{{ i18n "busuanzi" }}</span>
+            </span>
+        </div>
+        {{ end }}
+        {{ if .Params.toc }}
+        <div class="clear" style="display: none">
+            <div class="toc-article">
+                <div class="toc-title">{{ i18n "toc" }}</div>
+            </div>
+        </div>
+        {{ end }}
+        <div class="post-content">
+<SCRIPT language=JavaScript type=text/javascript>
+var swf_width='{{ .Params.Flash_width }}';
+var swf_height='{{ .Params.Flash_height }}';
+var configtg='0xffffff:文字颜色|2:文字位置|0x000000:文字背景颜色|30:文字背景透明度|0xffffff:按键文字颜色|0x4f6898:按键默认颜色|0x000033:按键当前颜色|8:自动播放时间|3:图片过渡效果|1:是否显示按钮|_blank:打开新窗口';
+var files='/upLoad/slide/month_1511/201511181539214885.jpg';
+var links='';
+var texts ;
+document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ swf_width +'" height="'+ swf_height +'">');
+document.write('<param name="movie" value="{{ .Params.Flash }}"><param name="quality" value="high">');
+document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'&bcastr_config='+configtg+'">');
+document.write('<embed src="{{ .Params.Flash }}" wmode="opaque" FlashVars="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'&bcastr_config='+configtg+'& menu="false" quality="high" width="'+ swf_width +'" height="'+ swf_height +'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />'); document.write('</object>');
+</SCRIPT>
+{{ if .Params.ruffle }}
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+{{ else }}
+<p>提示：本游戏暂不支持ruffle播放，请更换为IE浏览器（或<a href="https://browser.360.cn/ee/">360极速浏览器</a>）并且安装<a href="/swf/">CleanFlashPlayer插件</a>方可游玩！</p>
+<p>edge用户请切换为ie模式并安装<a href="/swf/">CleanFlashPlayer插件</a></p>
+{{ end }}
+{{ .Content }}
+<h2>所属分类：</h2>
+        </div>
+        {{ partial "copyright" .}}
+
+        <div class="post-meta meta-tags">
+            {{ if and (isset .Params "tags") .Params.tags }}
+            <ul class="clearfix">
+                {{ range .Params.Tags }}
+                <li><a href='{{ "tags/" | relURL }}{{ . | urlize }}' target="_blank">{{ . }}</a></li>
+                {{ end }}
+            </ul>
+            {{ else }}
+            {{ i18n "tagsNone" }}
+            {{ end }}
+        </div>
+    </article>
+    {{ partial "comments" . }}
+</div>
+{{ end }}
