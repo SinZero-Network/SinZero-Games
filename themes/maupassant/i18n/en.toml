@@ -34,9 +34,9 @@
     other = "Ads"
 
   [Articles]
-    other = "articles"
+    other = "games"
   [Articles_latest]
-    other = "Latest articles"
+    other = "Latest update"
   [Articles_related]
     other = "See Also"
 

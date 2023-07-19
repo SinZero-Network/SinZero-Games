@@ -59,3 +59,13 @@ summaryLength = 140
     name = "关于"
     url = "/about/"
     weight = 4
+
+[params.twikoo]
+    enable = true
+    envId = "https://twikoo.games.sinzmise.top" #腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+    region = "" #环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+    version = "1.6.16"
+
+[params.livere]
+    enable = true
+    uid = "MTAyMC81NTY4NS8zMjE1Mg=="

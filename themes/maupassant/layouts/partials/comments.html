@@ -1,6 +1,19 @@
 {{ if and .IsPage (ne .Params.comment false) }}
     {{ template "_internal/disqus.html" . }}
 
+    <script type="text/javascript">
+        (function(window){
+          var userAgent = navigator.userAgent; 
+          var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1;
+          var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+          if(isIE || isIE11){
+              document.writeln("<div id='lv-container' data-id='city' data-uid='{{ .Site.Params.livere.uid }}'></div>");
+          }else{
+            document.writeln("<div id='tcomment'></div>");
+          }
+        })(window)
+  </script>
+
     <!-- utteranc -->
     {{ if .Site.Params.utteranc.enable }}
     <div class="post bg-white">
@@ -13,16 +26,39 @@
       </script>
     </div>
     {{ end }}
-    <!--waline-->
-    {{ if .Site.Params.waline.enable }}
-    <div id="waline"></div>
-    <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+
+    {{ if .Site.Params.twikoo.enable }}
+    <script src="https://cdn.staticfile.org/twikoo/{{ .Site.Params.twikoo.version }}/twikoo.all.min.js"></script>
     <script>
-        Waline({
-            el: '#waline',
-            serverURL: '{{ .Site.Params.waline.serverURL }}',
-            placeholder: '{{ .Site.Params.waline.placeholder }}',
-        });
+        twikoo.init({
+            envId: '{{ .Site.Params.twikoo.envId }}',
+            el: '#tcomment',
+            region: '{{ .Site.Params.twikoo.region }}',
+            path: '{{ .Params.gameid }}',
+            lang: 'zh-CN',
+        })
     </script>
     {{ end }}
+
+    {{ if .Site.Params.livere.enable }}
+    <script type="text/javascript">
+    var refer = "{{ .Params.gameid }}".replace("http://","");
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+    
+           if (typeof LivereTower === 'function') { return; }
+    
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+    
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    
+
+
+    {{ end }}
+    
 {{- end }}

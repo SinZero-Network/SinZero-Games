@@ -2,10 +2,11 @@
 title: "巧虎黄金食物迷宫"
 toc: true
 type: "flash"
-flash: "/swf/5459.swf"
+flash: "/swf/8tpd.swf"
 Flash_width: "800"
 Flash_height: "600"
 ruffle: false
+gameid: 8tpd
 ---
 ## 操作方法：
 键盘方向键↑↓←→控制移动。
